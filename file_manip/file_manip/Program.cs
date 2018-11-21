@@ -27,6 +27,7 @@ namespace file_manip
 
 
 
+            Console.ReadKey();
         }
     }
 }
