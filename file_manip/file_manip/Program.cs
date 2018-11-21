@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace file_manip
 {
@@ -21,12 +22,17 @@ namespace file_manip
             
             */
 
+            string pathName;
+            string choiceAnswer;
+
             Console.WriteLine("Enter path of file to open: ");
-            string pathName = Console.ReadLine(pathName);
-            Console.WriteLine(pathName);
-
-
-
+            pathName = Console.ReadLine();
+            Console.WriteLine("Is this path correct?: {0}", pathName);
+            choiceAnswer = Console.ReadLine();
+            if (choiceAnswer == "yes" || choiceAnswer == "y")
+                Process.Start("notepad.exe",pathName);
+            
+            Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }
     }
