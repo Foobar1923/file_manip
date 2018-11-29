@@ -23,13 +23,13 @@ namespace file_manip
             */
 
             string pathName;
-            int count = 1;
             string searchText = "//";
-            string[] lines = System.IO.File.ReadAllLines(pathName);
-
+            int count = 1;
+            
             Console.WriteLine("Enter path of file to open: ");
             pathName = Console.ReadLine();
-            
+            string[] lines = System.IO.File.ReadAllLines(pathName);
+
             foreach (string line in lines)
             {
                 string lineSearch = line;
