@@ -22,32 +22,40 @@ namespace file_manip
             
             */
 
-            string pathName;
-            string searchText = "//";
-            int count = 1;
-            
-            Console.WriteLine("Enter path of file to open: ");
-            pathName = Console.ReadLine();
+            string pathName = null;
+            pathName = filePath(pathName);
             string[] lines = System.IO.File.ReadAllLines(pathName);
-
-            foreach (string line in lines)
+            pathName = changeFileName(pathName);
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(pathName))
             {
-                string lineSearch = line;
-                bool result = lineSearch.Contains(searchText);
-                if(result)
+                foreach (string line in lines)
                 {
-                    //int index = subLine.IndexOf(searchText);
-                    //if(index >= 0)
-                    Console.WriteLine(count);
-                    count++; // counts number of commented lines successfully
-                }                
+                    if (!line.Contains("//"))
+                    {
+                        file.WriteLine(line);
+                    }
+                }
             }
-
-            Console.WriteLine(count);
             //opens notepad with given file name
-            //Process.Start("notepad.exe", pathName);
+            Process.Start("notepad.exe", pathName);
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
+        }
+
+        static string changeFileName(string filePath)
+        {
+            int index = filePath.IndexOf(".");
+            if (index > 0)
+                filePath = filePath.Substring(0, index);
+            filePath = filePath + ".txt";
+            return filePath;
+        }
+
+        static string filePath(string name)
+        {
+            Console.WriteLine("Enter path of file to open: ");
+            name = Console.ReadLine();
+            return name;
         }
     }
 }
